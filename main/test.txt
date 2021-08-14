@@ -1,0 +1,218 @@
+import math;                        # imports all from math
+from math import *;                 # imports all from math
+from root.myMath import random;     # imports random from root.myMath
+from math import random, floor;     # imports random and floor from math
+from math import random => rand;    # imports random as rand
+from root.lib2.lib3 import func1 => f1;
+
+class TestObject extends parent implements func1 with f2 {
+
+    #-----testing varDef in classBody:
+    private var px : Int, py : Int;
+    public Int aa = 5;
+    protected String str = "string test _%#$";
+    const arr1 = Array(5, 6, "test", 8.8);
+    var Object1 : new ClassName ("String test", 5, 5.6, .47);
+    var arr2 : new Array [Int] (6, 5);
+    var myVar : Int = 25, myStr : String, myStr2 : String = "abcd", myArray1 : new Array [Double] (4.5, 6.77);
+    this.attribute1 = Obj2.age;
+    Int aa;
+
+    #error bayad begiri:
+    /*
+    var 1a :                        #name cannot start with number
+    public a : 5;
+    public var class : Int;         # class can not be name
+    public var Int: Double;         # Int can not be name
+    var arr3 = new array (,);       #
+    const a * 5;                    # * illegal for varDef
+    random text;                    #just a random text;
+    const a = 5                     #no semiCol
+    var a : var;                    # var can not be varName
+    var a : Int b : Int;            # no comma
+    this.attribute1 = Obj2.a;       # a < 2
+    a.a = 5                         # a < 2
+    */
+
+    #-----testing varAssign in classBody:
+    this.attribute1++;
+    this.attribute1--;
+    this.att1 = var2;
+    aa *= 5;
+    this.att2 += "test";
+    this.att2 -= 1.22;
+    this.obj1.obj2 = 5 + 7 - 3 ** 3;
+
+    #error bayad begiri:
+    /*
+    a.a = 5;
+    this.aa (= 5;                   #illegal operation
+    this.aa = random test;          # illegal varValue
+    var3 = a;                       #illegal name
+    var3 = *;                       # illegal value
+    this. aa = 5                    # ws
+    */
+
+    #-----testing function declaration:
+
+    #--constructor
+    className (Int px = 0, Int py = 0, String ab, Double aa = 0.45) {
+        this.px = px;
+        this.py = py;
+        if(number > aa) { this.px = 24; }
+        for(;;) { aa++; }
+    }
+    className () {}
+
+    #error:
+    /*
+    class () {}                     # class cannot be class name
+    className (Int Int = 0) {}      # int cannot be name
+    className (random text) {}      # illegal input
+    className (124) {}              # illegal input
+    className () {random text;}     # illegal funcBody
+    */
+
+    #---normalFunc:
+
+    #-void functions:
+    void funcName (Int aa) {
+        aa++;
+    }
+
+    #error:
+    /*
+    void funcName (Int aa) {
+        return aa;                  # void does not have return
+    }
+    void void () {}                 # void cannot be the name
+    */
+
+    #-nonVoid functions:
+    protected String funcName (String str, String str2) {
+        str += str2;
+        return str;
+    }
+
+    #error:
+    /*
+    Int Int () {return aa; }        # Int cannot be name
+    Int 2a () {return aa;}          # 2a  cannot be name
+    Int funcName () {}              # no return statement
+    */
+
+    #----testing inputList of functions:
+    private void className (Int aa, Int bb = 0, String ss) {}
+    ##############################################################void className (Object a2, var aa : Int) {}
+    public void className (var aa : new Array()) {}
+
+    #error:
+    /*
+    void className (,) {}           #
+    void className (random text) {} # illegal input
+    void name (Int aa,) {}          #
+    void name (46) {}               #
+    void name (aa >= 5) {}          #
+    */
+
+    #------testing function body:
+    public String funcName (String str, Int num1, Double num2) {
+
+        #--varDef and assignment:
+        const arr1 = Array(5, 6, "test", 8.8);
+        var arr2 : new Array [Int] (6, 5);
+        var myVar : Int = 25, myStr : String, myStr2 : String = "abcd", myArray1 : new Array [Double] (4.5, .77);
+        Int aa;
+
+        this.attribute1--;
+        this.att1 = var2;
+        aa *= 5;
+        this.att2 -= 1.22;
+
+        #error:
+        /*
+        public var myVar : Int;     # modifiers are not allowed inside functions
+        */
+
+        #--If:
+        if(var1 > var2) {}
+
+        if(!(var1 <= 5+3 || var3 == 8**6) && var5 != var2//var5) {
+            aa++;
+        }
+        elif(var1 == var2) {
+            aa--;
+        }
+        else {
+            aa = 5;
+        }
+
+        #error:
+        /*
+        else {}
+        elif(aa > rr) {}
+        if(random text) {}
+        if(random) {}
+        if(44) {}
+        */
+
+        #--for
+        for(;;) {}
+        for(Int aa = 5; aa < 5; aa++) {}
+        for(aa = 0; aa != 5; aa++) {}
+        for(aa = 0, bb = 0; !(var1 <= 5+3 || var3 == 8**6) && var5 != var2//var5; ) {}
+        for(var aa : Int = 0, bb = 0; var1 != var2 && var2 > var3; aa++, bb--) {}
+
+        for(var obj in myList) { obj++; }
+
+        #error:
+        /*
+        for(random text; ;) {}      #
+        for(;random text;) {}       #
+        for(;;5645) {}              #
+        for(Int for = 0; for < 10; for++) {} #for cannot be varName
+        */
+
+        #--while
+        while(!(var1 <= 5+3 || var3 == 8**6)) {aa++;}
+        do {aa++;} while(!(var1 <= 5+3 || var3 == 8**6))
+
+        #--switch
+        switch (name) {
+            case "Jan":
+                name = "Jan 2021";
+                break;
+            case "Feb":
+            case "Dec":
+                name = "Dec 2021";
+                break;
+            default:
+                name = "2021";
+        }
+
+        #--try catch
+        try {
+            res = num1 / num2;
+        }
+        on DivisionByZeroException catch (err) {
+            err = "DivisionByZeroException";
+            num1 = 0;
+            num2--;
+        }
+        catch (err) {
+            num2 = 0;
+        }
+
+        #------------------------------------------expression test:
+        return (45 * (aa-bb) + cc ** (aa//bb) + ~1 / -3 & -cc) * 2;
+
+    }
+
+
+    Double divide (Int num1, Int num2) {
+        var grade: Double = 18.25, bonus: Double = 0.5;
+        var result : Double;
+        result = num1 / num2;
+        return result;
+    }
+}
